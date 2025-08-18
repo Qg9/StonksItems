@@ -1,0 +1,25 @@
+items:
+  farm_hoe:
+    material: DIAMOND_HOE
+    name: "&aHoue du fermier"
+    lore:
+      - "&7Une houe magique pour vos cultures"
+      - "&eUtilisable en &6Harvest Mode"
+      - "%carrot_item% %wheat% %owner%"
+    enchantments:
+      DURABILITY: 1
+    flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_ENCHANTS
+    unbreakable: true
+    properties:
+      HARVEST_RADIUS: 3
+      HARVEST_FORTUNE: 2
+      HARVEST_AUTOSELL: false
+      LORE_CHANGE:
+        - "&7Opere aussi sur les carrotes (%carrot_item%), %owner%"
+      NAME_CHANGE: "&eHoue de Blé (%wheat%)"
+      OWNER: "Votre nom ici"
+      STATISTICS:
+        - "wheat"
+        - "carrot_item"
