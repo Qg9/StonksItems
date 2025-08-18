@@ -13,8 +13,8 @@ object StatisticsAction : PlaceholdersItemPropertyAction {
         val stats = statsGetter.invoke()
 
         val keys = ItemProperty.STATISTICS.get<List<String>>(nbt)
+        println(keys)
         writer.write {
-
             for (statKey in keys) {
                 val increment = stats[statKey] ?: 0
                 val current = nbt.getInteger("$STATS_PREFIX$statKey")
@@ -27,6 +27,8 @@ object StatisticsAction : PlaceholdersItemPropertyAction {
         }
     }
 
-    override fun generate(nbt: ReadableItemNBT, placeholders: MutableMap<String, String>) =
-        apply(nbt, WriteableNBT(), placeholders, {mapOf()})
+    override fun generate(nbt: ReadableItemNBT, placeholders: MutableMap<String, String>) {
+        if (!ItemProperty.STATISTICS.has(nbt)) return
+        placeholders.putAll(ItemProperty.STATISTICS.get<List<String>>(nbt).associateWith { 0.toString() })
+    }
 }

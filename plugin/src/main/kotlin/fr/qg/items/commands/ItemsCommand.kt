@@ -12,8 +12,8 @@ import org.bukkit.entity.Player
 object ItemsCommand {
 
     @Require("items.give")
-    @Command(name = "give", desc = "Give un item configuré", usage = "/items give <item> [amount]")
-    fun give(@Sender player: Player, item: ConfigurationItem, @Text @OptArg("") args: String) {
+    @Command(name = "give", desc = "Give un item configuré", usage = "/items give <item> <params..>")
+    fun give(@Sender player: Player, item: ConfigurationItem, @OptArg("") @Text args: String) {
 
         println(args)
 
@@ -46,9 +46,9 @@ object ItemsCommand {
 
         for (token in tokens) {
             when {
-                token == "-i" -> prefix = ItemProperty.PREFIX_ITEMS
-                token == "-s" -> prefix = StatisticsAction.STATS_PREFIX
-                token == "-nbt" -> prefix = ""
+                token == ":i" -> prefix = ItemProperty.PREFIX_ITEMS
+                token == ":s" -> prefix = StatisticsAction.STATS_PREFIX
+                token == ":nbt" -> prefix = ""
                 token.contains("=") -> {
                     val (key, rawValue) = token.split("=", limit = 2)
 

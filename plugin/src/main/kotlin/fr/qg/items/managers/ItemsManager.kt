@@ -39,18 +39,20 @@ object ItemsManager {
         val placeholders = mutableMapOf<String, String>()
 
         NBT.modify(stack) {
+            if (item.properties.isNotEmpty())
+                item.properties.forEach { (prop: ItemProperty, value: Any) -> prop.set(it, value) }
+
             defaults.forEach { key, (value, type) ->
                 type.setToItem(it, key, type.parse(value))
             }
-
-            if (item.properties.isNotEmpty())
-                item.properties.forEach { (prop: ItemProperty, value: Any) -> prop.set(it, value) }
         }
 
         NBT.get(stack) {
             item.properties.keys.filter { actions[it] is PlaceholdersItemPropertyAction }.forEach { t ->
                 (actions[t] as PlaceholdersItemPropertyAction).generate(it, placeholders)
             }
+
+            println(placeholders)
 
             ItemActionManager.updateItem(it, stack, placeholders)
         }
