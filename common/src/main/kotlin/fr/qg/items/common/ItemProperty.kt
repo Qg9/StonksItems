@@ -10,6 +10,10 @@ enum class ItemProperty(
     val storage: TypeStorage,
 ) {
 
+    INFINITE(ItemPropertyType.PRIMARY, TypeStorage.BOOLEAN),
+    SHIFT_CLICK_ACTION(ItemPropertyType.PRIMARY, TypeStorage.LIST),
+    CLICKS_PLACEHOLDERS(ItemPropertyType.LINKED, TypeStorage.LIST),
+
     HARVEST_RADIUS(ItemPropertyType.PRIMARY, TypeStorage.INT),
     HARVEST_FORTUNE(ItemPropertyType.LINKED, TypeStorage.INT),
     HARVEST_AUTOSELL(ItemPropertyType.LINKED, TypeStorage.BOOLEAN),

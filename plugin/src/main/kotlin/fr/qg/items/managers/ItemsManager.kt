@@ -3,6 +3,9 @@ package fr.qg.items.managers
 import de.tr7zw.changeme.nbtapi.NBT
 import fr.qg.items.ItemsPlugin
 import fr.qg.items.action.HarvestAction
+import fr.qg.items.action.InfiniteAction
+import fr.qg.items.action.OtherStatisticsAction
+import fr.qg.items.action.ShiftClickAction
 import fr.qg.items.common.ItemProperty
 import fr.qg.items.common.action.LoreChangeAction
 import fr.qg.items.common.action.NameChangeAction
@@ -20,12 +23,14 @@ object ItemsManager {
     val items: MutableMap<String, ConfigurationItem> = mutableMapOf()
 
     val actions = mapOf(
-        ItemProperty.HARVEST_RADIUS to HarvestAction,
-        ItemProperty.USE to UseAction,
-        ItemProperty.LORE_CHANGE to LoreChangeAction,
-        ItemProperty.NAME_CHANGE to NameChangeAction,
-        ItemProperty.OWNER to OwnerAction,
-        ItemProperty.STATISTICS to StatisticsAction,
+        ItemProperty.HARVEST_RADIUS to listOf(HarvestAction),
+        ItemProperty.USE to listOf(UseAction),
+        ItemProperty.LORE_CHANGE to listOf(LoreChangeAction),
+        ItemProperty.NAME_CHANGE to listOf(NameChangeAction),
+        ItemProperty.OWNER to listOf(OwnerAction),
+        ItemProperty.STATISTICS to listOf(StatisticsAction, OtherStatisticsAction),
+        ItemProperty.INFINITE to listOf(InfiniteAction),
+        ItemProperty.SHIFT_CLICK_ACTION to listOf(ShiftClickAction)
     )
 
     fun load() {

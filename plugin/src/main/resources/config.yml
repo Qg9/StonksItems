@@ -23,3 +23,7 @@ items:
       STATISTICS:
         - "wheat"
         - "carrot_item"
+      SHIFT_CLICK_ACTION:
+        - "[sound] VILLAGER_YES"
+        - "[player] upgrade_hoe hand %stats_wheat% %items_use%"
+      CLICKS_PLACEHOLDERS: "stats_wheat$INT items_use$INT"

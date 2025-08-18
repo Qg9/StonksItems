@@ -27,7 +27,9 @@ class ItemsPlugin : ZapperJavaPlugin() {
 
         ItemsManager.load()
 
-        ItemsManager.actions.values.filter { it is Listener }.forEach { server.pluginManager.registerEvents(it as Listener, this) }
+        ItemsManager.actions.values.filter { it is Listener }.forEach {
+            it.forEach { server.pluginManager.registerEvents(it as Listener, this)  }
+        }
 
         val drink = DrinkCommandService(this)
         drink.bind(ConfigurationItem::class.java).toProvider(ConfigurationItemProvider)
