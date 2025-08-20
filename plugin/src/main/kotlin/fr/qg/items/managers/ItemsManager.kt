@@ -7,6 +7,7 @@ import fr.qg.items.action.InfiniteAction
 import fr.qg.items.action.OtherStatisticsAction
 import fr.qg.items.action.ShiftClickAction
 import fr.qg.items.common.ItemProperty
+import fr.qg.items.common.action.ItemPropertyAction
 import fr.qg.items.common.action.LoreChangeAction
 import fr.qg.items.common.action.NameChangeAction
 import fr.qg.items.common.action.placeholders.OwnerAction
@@ -16,6 +17,8 @@ import fr.qg.items.common.action.placeholders.UseAction
 import fr.qg.items.common.managers.ConfigManager
 import fr.qg.items.common.managers.ItemActionManager
 import fr.qg.items.common.models.ConfigurationItem
+import fr.qg.items.common.registries.VersionRegistry
+import fr.qg.items.common.utils.linearise
 import org.bukkit.inventory.ItemStack
 
 object ItemsManager {
@@ -39,7 +42,7 @@ object ItemsManager {
     }
 
     fun createItem(item: ConfigurationItem, defaults: Map<String, Pair<String, ItemProperty.TypeStorage>>) : ItemStack {
-        val stack = ItemsPlugin.implementation.buildItem(item)
+        val stack = VersionRegistry.version.buildItem(item)
 
         val placeholders = mutableMapOf<String, String>()
 
@@ -53,11 +56,10 @@ object ItemsManager {
         }
 
         NBT.get(stack) {
-            item.properties.keys.filter { actions[it] is PlaceholdersItemPropertyAction }.forEach { t ->
-                (actions[t] as PlaceholdersItemPropertyAction).generate(it, placeholders)
-            }
 
-            println(placeholders)
+            item.properties.keys.mapNotNull { h -> actions[h] }.linearise().forEach { t ->
+                (t as? PlaceholdersItemPropertyAction)?.generate(it, placeholders)
+            }
 
             ItemActionManager.updateItem(it, stack, placeholders)
         }

@@ -23,6 +23,13 @@ project(":common") {
     dependencies {
         add("compileOnly", "org.imanity.paperspigot:paper1.8.8:1.8.8")
         add("compileOnly", "de.tr7zw:item-nbt-api:2.15.1")
+        add("compileOnly", "com.github.MilkBowl:VaultAPI:1.7")
+
+        // SHOPS
+        add("compileOnly", "com.github.brcdev-minecraft:shopgui-api:3.1.0")
+
+        // JOBS
+        add("compileOnly","com.github.Zrips:Jobs:v5.2.6.2")
     }
 }
 
@@ -35,5 +42,6 @@ project(":v8") {
         add("compileOnly", "org.imanity.paperspigot:paper1.8.8:1.8.8")
         add("compileOnly", "de.tr7zw:item-nbt-api:2.15.1")
         add("compileOnly", project(":common"))
+        add("compileOnly", "com.github.MilkBowl:VaultAPI:1.7")
     }
 }

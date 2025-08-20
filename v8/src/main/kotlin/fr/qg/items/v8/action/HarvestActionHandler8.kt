@@ -5,8 +5,12 @@ import fr.qg.items.common.action.handler.HarvestActionHandler
 import fr.qg.items.common.action.placeholders.OwnerAction
 import fr.qg.items.common.action.placeholders.StatisticsAction
 import fr.qg.items.common.action.placeholders.UseAction
+import fr.qg.items.common.impl.eco.ShopGuiEconomyImpl.price
 import fr.qg.items.common.managers.ItemActionManager
 import fr.qg.items.common.models.WriteableNBT
+import fr.qg.items.common.registries.EconomyRegistry
+import fr.qg.items.common.registries.JobsRegistry
+import fr.qg.items.common.registries.VaultRegistry
 import fr.qg.items.v8.harvest.HarvestType
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -38,6 +42,7 @@ object HarvestActionHandler8 : HarvestActionHandler {
                     harvestType.maxAmount + 1
                 )*fortune
 
+                JobsRegistry.jobs.actions(player, block)
                 collected.merge(harvestType.dropType, amount, Int::plus)
                 harvestType.reset.invoke(target)
             }
@@ -55,9 +60,13 @@ object HarvestActionHandler8 : HarvestActionHandler {
                 }
             }
         } else {
-            // TODO À implémenter : vente automatique via économie
-        }
+            var price = 0.0
+            for ((material, totalAmount) in collected) {
+                price += EconomyRegistry.eco.price(player, material)*totalAmount
+            }
 
+            VaultRegistry.economy.depositPlayer(player, price)
+        }
 
         val placeholders = mutableMapOf<String, String>()
         if(!UseAction.use(nbt, writer, 1, placeholders)) {

@@ -10,8 +10,9 @@ object ItemActionManager {
 
     fun updateItem(nbt: ReadableItemNBT, stack: ItemStack, placeholders: Map<String, String>) {
         if (ItemProperty.NAME_CHANGE.has(nbt) || ItemProperty.LORE_CHANGE.has(nbt)) {
-            val meta =stack.itemMeta
+            val meta = stack.itemMeta
             val changes = placeholders.entries
+
             NameChangeAction.apply(nbt, meta, changes)
             LoreChangeAction.apply(nbt, meta, changes)
             stack.itemMeta = meta

@@ -5,6 +5,7 @@ import fr.qg.items.ItemsPlugin
 import fr.qg.items.common.ItemProperty
 import fr.qg.items.common.action.ItemPropertyAction
 import fr.qg.items.common.models.WriteableNBT
+import fr.qg.items.common.registries.VersionRegistry
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
@@ -34,7 +35,7 @@ object HarvestAction : Listener, ItemPropertyAction {
 
             val writer = WriteableNBT()
 
-            ItemsPlugin.implementation.harvestHandler().handle(
+            VersionRegistry.version.harvestHandler().handle(
                 player = player,
                 nbt = nbt,
                 writer = writer,

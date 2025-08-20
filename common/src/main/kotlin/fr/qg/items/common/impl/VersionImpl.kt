@@ -1,10 +1,10 @@
-package fr.qg.items.common
+package fr.qg.items.common.impl
 
 import fr.qg.items.common.action.handler.HarvestActionHandler
 import fr.qg.items.common.models.ConfigurationItem
 import org.bukkit.inventory.ItemStack
 
-interface VersionImplementation {
+interface VersionImpl {
 
     fun harvestHandler() : HarvestActionHandler
 

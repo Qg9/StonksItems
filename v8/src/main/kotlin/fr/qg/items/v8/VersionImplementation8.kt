@@ -1,14 +1,14 @@
 package fr.qg.items.v8
 
 import de.tr7zw.changeme.nbtapi.NBT
-import fr.qg.items.common.VersionImplementation
+import fr.qg.items.common.impl.VersionImpl
 import fr.qg.items.common.action.handler.HarvestActionHandler
 import fr.qg.items.common.models.ConfigurationItem
 import fr.qg.items.v8.action.HarvestActionHandler8
 import org.bukkit.ChatColor
 import org.bukkit.inventory.ItemStack
 
-class VersionImplementation8 : VersionImplementation {
+class VersionImplementation8 : VersionImpl {
     override fun harvestHandler(): HarvestActionHandler = HarvestActionHandler8
 
     override fun buildItem(item: ConfigurationItem): ItemStack {

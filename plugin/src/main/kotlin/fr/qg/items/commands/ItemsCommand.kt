@@ -2,6 +2,7 @@ package fr.qg.items.commands
 
 import com.jonahseguin.drink.annotation.*
 import de.tr7zw.changeme.nbtapi.NBTItem
+import fr.qg.items.ItemsPlugin
 import fr.qg.items.common.ItemProperty
 import fr.qg.items.common.action.placeholders.StatisticsAction
 import fr.qg.items.common.models.ConfigurationItem
@@ -14,8 +15,6 @@ object ItemsCommand {
     @Require("items.give")
     @Command(name = "give", desc = "Give un item configuré", usage = "/items give <item> <params..>")
     fun give(@Sender player: Player, item: ConfigurationItem, @OptArg("") @Text args: String) {
-
-        println(args)
 
         val tokens = parseArguments(args)
 
@@ -35,8 +34,24 @@ object ItemsCommand {
     @Command(name = "info", desc = "Info sur l'item", usage = "/items info")
     fun info(@Sender player: Player) {
         val stack = player.itemInHand ?: return
-
         player.sendMessage(NBTItem(stack).toString())
+    }
+
+    @Require("items.set")
+    @Command(name = "set", desc = "Set l'item", usage = "/items set <player> <item> <params..>")
+    fun set(@Sender player: Player, item: ConfigurationItem, @OptArg("") @Text args: String) {
+
+        val tokens = parseArguments(args)
+
+        val stack = ItemsManager.createItem(item, tokens)//.apply { this.amount = amount.coerceAtLeast(1) }
+        player.inventory.itemInHand = stack
+    }
+
+    @Require("items.reload")
+    @Command(name = "reload", desc = "Reload le plugin", usage = "/items reload")
+    fun reload(@Sender player: Player) {
+        ItemsPlugin.plugin.reloadConfig()
+        ItemsManager.load()
     }
 
     fun parseArguments(input: String): Map<String, Pair<String, ItemProperty.TypeStorage>> {
@@ -68,8 +83,6 @@ object ItemsCommand {
                 }
             }
         }
-        println(result)
-        println(result.size)
         return result
     }
 }

@@ -13,7 +13,6 @@ object StatisticsAction : PlaceholdersItemPropertyAction {
         val stats = statsGetter.invoke()
 
         val keys = ItemProperty.STATISTICS.get<List<String>>(nbt)
-        println(keys)
         writer.write {
             for (statKey in keys) {
                 val increment = stats[statKey] ?: 0
