@@ -25,7 +25,7 @@ items:
     properties:
       HARVEST_RADIUS: 3
       HARVEST_FORTUNE: 2
-      HARVEST_AUTOSELL: false
+      AUTOSELL: false
       LORE_CHANGE:
         - "&7Opere aussi sur les carrotes (%carrot_item%), %owner%"
       NAME_CHANGE: "&eHoue de Blé (%wheat%)"
@@ -41,9 +41,7 @@ items:
     material: DIAMOND_PICKAXE
     name: "&bHAMMER"
     lore:
-      - "&7Vous avez cassé : b%diamond_ore% diamants !"
-      - "&7Propriété de : &e%owner%"
-      - "&7Utilisations restantes : &c%use%"
+      - "noneed"
     enchantments:
       DURABILITY: 1
     flags:
@@ -60,3 +58,10 @@ items:
         - "diamond_ore"
       HAMMER: 1 # 3x3
       USE: 20
+  chopper:
+    material: DIAMOND_AXE
+    name: "&cCHOPPER"
+    lore:
+      - "&7chop trees"
+    properties:
+      TREE_CHOPPER: true

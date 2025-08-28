@@ -65,7 +65,11 @@ object ConfigManager {
     fun load(plugin: JavaPlugin): Map<String, ConfigurationItem> {
         val items = plugin.config.getConfigurationSection("items") ?: return emptyMap()
         return items.getKeys(false)
-            .mapNotNull { key -> items.getConfigurationSection(key)?.let { key.lowercase() to loadItem(it) } }
-            .toMap()
+            .mapNotNull { key -> items.getConfigurationSection(key)
+                ?.let { key.lowercase() to loadItem(it) } }
+            .toMap().mapKeys {
+                println("LOADED ITEMS : ${it.key}")
+                it.key
+            }
     }
 }

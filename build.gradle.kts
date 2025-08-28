@@ -4,7 +4,7 @@ plugins {
 
 allprojects {
     group = "fr.qg.uitems"
-    version = "1.0-SNAPSHOT"
+    version = "1.0"
 
     repositories {
         mavenCentral()
@@ -29,7 +29,9 @@ project(":common") {
         add("compileOnly", "com.github.brcdev-minecraft:shopgui-api:3.1.0")
 
         // JOBS
-        add("compileOnly","com.github.Zrips:Jobs:v5.2.6.2")
+        add("compileOnly","com.github.Zrips:Jobs:v5.2.6.2") {
+            isTransitive = false
+        }
     }
 }
 

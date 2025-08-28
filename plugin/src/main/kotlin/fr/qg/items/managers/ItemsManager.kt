@@ -7,6 +7,7 @@ import fr.qg.items.action.HarvestAction
 import fr.qg.items.action.InfiniteAction
 import fr.qg.items.action.OtherStatisticsAction
 import fr.qg.items.action.ShiftClickAction
+import fr.qg.items.action.TreeChopAction
 import fr.qg.items.common.ItemProperty
 import fr.qg.items.common.action.ItemPropertyAction
 import fr.qg.items.common.action.LoreChangeAction
@@ -36,7 +37,8 @@ object ItemsManager {
         ItemProperty.STATISTICS to listOf(StatisticsAction, OtherStatisticsAction),
         ItemProperty.INFINITE to listOf(InfiniteAction),
         ItemProperty.SHIFT_CLICK_ACTION to listOf(ShiftClickAction),
-        ItemProperty.HAMMER to listOf(HammerAction)
+        ItemProperty.HAMMER to listOf(HammerAction),
+        ItemProperty.TREE_CHOPPER to listOf(TreeChopAction)
     )
 
     fun load() {

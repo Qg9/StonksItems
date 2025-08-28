@@ -12,5 +12,11 @@ object LoreChangeAction : ItemPropertyAction {
         val lore = ItemProperty.LORE_CHANGE.get<List<String>>(nbt)
         meta.setLore(lore.map { placeholders.operate(it) { s, k, v -> s.replace("%$k%", v) }.replace("&","§") })
     }
+
+    fun applyToCurrentLore(meta: ItemMeta, placeholders: Set<Map.Entry<String, String>>) {
+
+        val lore = meta.lore
+        meta.setLore(lore.map { placeholders.operate(it) { s, k, v -> s.replace("%$k%", v) }.replace("&","§") })
+    }
 }
 

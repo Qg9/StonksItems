@@ -21,15 +21,11 @@ tasks.named<Jar>("jar") { enabled = false }
 tasks.shadowJar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     mergeServiceFiles()
-}
 
-/*
-tasks.withType<ShadowJar>().configureEach {
-    archiveClassifier.set("")
-    mergeServiceFiles()
+    archiveFileName.set("StonksItems-paper-${project.version}.jar")
+    destinationDirectory.set(rootProject.layout.projectDirectory.dir("target"))
+    archiveClassifier.set("") // pas de "-all" dans le nom
 }
-
- */
 
 tasks.named("assemble") { dependsOn(tasks.named("shadowJar")) }
 

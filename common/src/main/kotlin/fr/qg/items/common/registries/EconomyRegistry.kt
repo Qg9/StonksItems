@@ -17,9 +17,13 @@ object EconomyRegistry {
             ?: EconomyType.NONE
 
     fun load(plugin: JavaPlugin)  {
-        val implClass = Class.forName(resolveVersion(plugin).implClass)
+        val version = resolveVersion(plugin)
+
+        val implClass = Class.forName(version.implClass)
         val ctor = implClass.getDeclaredConstructor()
         ctor.isAccessible = true
         eco = ctor.newInstance() as EconomyImpl
+
+        println("Loaded ${version.name} as EconomyHook")
     }
 }

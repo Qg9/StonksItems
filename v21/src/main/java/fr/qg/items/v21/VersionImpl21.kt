@@ -6,6 +6,7 @@ import fr.qg.items.common.models.ConfigurationItem
 import fr.qg.items.v21.action.HarvestActionHandler21
 import io.papermc.paper.datacomponent.item.attribute.AttributeModifierDisplay.override
 import net.kyori.adventure.text.Component
+import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
@@ -38,4 +39,10 @@ class VersionImpl21 : VersionImpl {
 
     override fun itemInMainHand(player: Player): ItemStack? = player.itemInHand
 
+    override fun logs(): List<Material> = listOf(
+        Material.OAK_LOG, Material.SPRUCE_LOG, Material.BIRCH_LOG,
+        Material.JUNGLE_LOG, Material.ACACIA_LOG, Material.DARK_OAK_LOG,
+        Material.MANGROVE_LOG, Material.CHERRY_LOG, Material.CRIMSON_STEM,
+        Material.WARPED_STEM, Material.PALE_OAK_LOG
+    )
 }

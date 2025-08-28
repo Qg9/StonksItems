@@ -33,7 +33,7 @@ object HarvestActionHandler8 : HarvestActionHandler {
                     block.location.clone().add(x.toDouble(), 0.0, z.toDouble())
                 )
 
-                val harvestType = HarvestType.Companion.fromBlock(target.type) ?: continue
+                val harvestType = HarvestType.fromBlock(target.type) ?: continue
 
                 if (!harvestType.isMature.test(target)) continue
 

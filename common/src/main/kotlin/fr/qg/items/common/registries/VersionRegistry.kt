@@ -22,7 +22,10 @@ object VersionRegistry {
     }
 
     fun load()  {
-        val implClass = Class.forName(resolveVersion().implClass)
+        val versionObj = resolveVersion()
+        println("Loaded ${versionObj.name} as version !")
+
+        val implClass = Class.forName(versionObj.implClass)
         val ctor = implClass.getDeclaredConstructor()
         ctor.isAccessible = true
         version = ctor.newInstance() as VersionImpl

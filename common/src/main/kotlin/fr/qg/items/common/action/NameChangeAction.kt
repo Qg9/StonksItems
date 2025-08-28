@@ -12,6 +12,12 @@ object NameChangeAction : ItemPropertyAction {
         val name = ItemProperty.NAME_CHANGE.get<String>(nbt)
         meta.setDisplayName(placeholders.operate(name) { s, k, v -> s.replace("%$k%", v) }.replace("&","§"))
     }
+
+    fun applyToCurrentLore(meta: ItemMeta, placeholders: Set<Map.Entry<String, String>>) {
+
+        val name = meta.displayName
+        meta.setDisplayName(placeholders.operate(name) { s, k, v -> s.replace("%$k%", v) }.replace("&","§"))
+    }
 }
 
 fun <K, V, H> Set<Map.Entry<K, V>>.operate(def: H, operator: (H, K, V) -> H) : H {

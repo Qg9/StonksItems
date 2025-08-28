@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/plugin" />
+            <option value="$PROJECT_DIR$/v21" />
             <option value="$PROJECT_DIR$/v8" />
           </set>
         </option>
