@@ -2,6 +2,7 @@ package fr.qg.items.action
 
 import de.tr7zw.changeme.nbtapi.NBT
 import fr.qg.items.common.ItemProperty
+import fr.qg.items.common.action.ItemPropertyAction
 import fr.qg.items.common.action.placeholders.OwnerAction
 import fr.qg.items.common.action.placeholders.StatisticsAction
 import fr.qg.items.common.action.placeholders.UseAction
@@ -14,14 +15,13 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
 
-object HammerAction : Listener {
+object HammerAction : Listener, ItemPropertyAction {
 
     @EventHandler
     fun onBreak(event: BlockBreakEvent) {
 
         val block = event.block
         val player = event.player
-
         val item = VersionRegistry.version.itemInMainHand(player) ?: return
 
         NBT.get(item) {
@@ -33,7 +33,8 @@ object HammerAction : Listener {
             for (x in -radius..radius)
                 for (y in -radius..radius)
                     for (z in -radius..radius) {
-                        val target = block.location.add(x.toDouble(), y.toDouble(), z.toDouble()).block
+                        val target = block.location.clone().add(x.toDouble(), y.toDouble(), z.toDouble()).block
+                        if(target.type == Material.AIR)continue
                         types.merge(target.type, 1, Int::plus)
                         target.breakNaturally(item)
                     }
@@ -56,5 +57,4 @@ object HammerAction : Listener {
             ItemActionManager.updateItem(it, item, placeholders)
         }
     }
-
 }

@@ -43,6 +43,8 @@ items:
     properties:
       LORE_CHANGE:
         - "&7Vous avez cassé : %diamond_ore% diamants !"
+        - "&7Propriété de : &e%owner%"
+        - "&7Utilisations restantes : &c%use%"
       OWNER: "Votre nom ici"
       STATISTICS:
         - "diamond_ore"

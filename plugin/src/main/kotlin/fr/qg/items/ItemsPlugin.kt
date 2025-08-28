@@ -3,7 +3,6 @@ package fr.qg.items
 import com.jonahseguin.drink.command.DrinkCommandService
 import fr.qg.items.commands.ConfigurationItemProvider
 import fr.qg.items.commands.ItemsCommand
-import fr.qg.items.common.impl.VersionImpl
 import fr.qg.items.common.models.ConfigurationItem
 import fr.qg.items.common.registries.EconomyRegistry
 import fr.qg.items.common.registries.JobsRegistry
@@ -25,16 +24,18 @@ class ItemsPlugin : ZapperJavaPlugin() {
         saveDefaultConfig()
 
         plugin = this
+
+        ItemsManager.actions.forEach { (key, value) ->
+            println("LOADED PROPERTY : ${key.type.name}")
+            value.filter { it is Listener }.forEach { server.pluginManager.registerEvents(it as Listener, this)  }
+        }
+
         VersionRegistry.load()
         EconomyRegistry.load(plugin)
         JobsRegistry.load(plugin)
         VaultRegistry.setupEconomy(plugin)
 
         ItemsManager.load()
-
-        ItemsManager.actions.values.filter { it is Listener }.forEach {
-            it.forEach { server.pluginManager.registerEvents(it as Listener, this)  }
-        }
 
         val drink = DrinkCommandService(this)
         drink.bind(ConfigurationItem::class.java).toProvider(ConfigurationItemProvider)

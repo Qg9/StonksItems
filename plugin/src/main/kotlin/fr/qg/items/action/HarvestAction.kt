@@ -30,7 +30,10 @@ object HarvestAction : Listener, ItemPropertyAction {
 
         val player = event.player
         val item = VersionRegistry.version.itemInMainHand(player) ?: return
-        val block = event.block
+        val block = event.block ?: return
+
+        if (block.type == Material.AIR) return
+        
 
         NBT.get(item) { nbt ->
             if (!ItemProperty.HARVEST_RADIUS.has(nbt)) return@get
