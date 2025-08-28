@@ -46,8 +46,8 @@ object HarvestAction : Listener, ItemPropertyAction {
                 ItemProperty.HARVEST_FORTUNE.get(nbt)
             else 1
 
-            val autosell = if (ItemProperty.HARVEST_AUTOSELL.has(nbt))
-                ItemProperty.HARVEST_AUTOSELL.get(nbt)
+            val autosell = if (ItemProperty.AUTOSELL.has(nbt))
+                ItemProperty.AUTOSELL.get(nbt)
             else false
 
             event.isCancelled = true
