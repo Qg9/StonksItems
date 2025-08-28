@@ -3,6 +3,9 @@ main: fr.qg.items.ItemsPlugin
 version: 1.0.0
 description: Gestion d’items configurés (multi-version 1.8/1.21)
 authors: [qg]
+depend:
+  - PlaceholderAPI
+  - Vault
 softdepend:
   - ShopGuiPlus
   - Jobs
@@ -10,7 +13,6 @@ commands:
   qgitems:
     description: Commandes des items
     permission: items.command
-
 permissions:
   items.*:
     description: Toutes les permissions du plugin Items

@@ -6,9 +6,10 @@ import fr.qg.items.common.action.handler.HarvestActionHandler
 import fr.qg.items.common.models.ConfigurationItem
 import fr.qg.items.v8.action.HarvestActionHandler8
 import org.bukkit.ChatColor
+import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
-class VersionImplementation8 : VersionImpl {
+class VersionImpl8 : VersionImpl {
     override fun harvestHandler(): HarvestActionHandler = HarvestActionHandler8
 
     override fun buildItem(item: ConfigurationItem): ItemStack {
@@ -31,4 +32,6 @@ class VersionImplementation8 : VersionImpl {
 
         return stack
     }
+
+    override fun itemInMainHand(player: Player): ItemStack? = player.itemInHand
 }

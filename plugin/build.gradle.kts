@@ -6,6 +6,7 @@ plugins {
 
 dependencies {
     compileOnly("org.imanity.paperspigot:paper1.8.8:1.8.8")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7")
 
     implementation(project(":v8"))
     implementation(project(":common"))

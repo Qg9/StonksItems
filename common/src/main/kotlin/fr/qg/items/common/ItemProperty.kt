@@ -18,6 +18,8 @@ enum class ItemProperty(
     HARVEST_FORTUNE(ItemPropertyType.LINKED, TypeStorage.INT),
     HARVEST_AUTOSELL(ItemPropertyType.LINKED, TypeStorage.BOOLEAN),
 
+    HAMMER(ItemPropertyType.PRIMARY, TypeStorage.INT),
+
     USE(ItemPropertyType.FEATURE, TypeStorage.INT),
     STATISTICS(ItemPropertyType.FEATURE, TypeStorage.LIST),
     OWNER(ItemPropertyType.FEATURE, TypeStorage.STRING),

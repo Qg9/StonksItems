@@ -21,7 +21,7 @@ import java.util.concurrent.ThreadLocalRandom
 
 object HarvestActionHandler8 : HarvestActionHandler {
 
-    override fun handle(player: Player, nbt: ReadableItemNBT, writer: WriteableNBT, block: Block, radius: Int, fortune: Int, autosell: Boolean) {
+    override fun handle(player: Player, nbt: ReadableItemNBT, writer: WriteableNBT, block: Block, radius: Int, fortune: Int) : Map<Material, Int> {
 
         val world = block.world
         val collected = mutableMapOf<Material, Int>()
@@ -48,39 +48,6 @@ object HarvestActionHandler8 : HarvestActionHandler {
             }
         }
 
-        if (!autosell) {
-            for ((material, totalAmount) in collected) {
-                val maxStack = material.maxStackSize.coerceAtLeast(1)
-                var remaining = totalAmount
-
-                while (remaining > 0) {
-                    val stackSize = remaining.coerceAtMost(maxStack)
-                    player.inventory.addItem(ItemStack(material, stackSize))
-                    remaining -= stackSize
-                }
-            }
-        } else {
-            var price = 0.0
-            for ((material, totalAmount) in collected) {
-                price += EconomyRegistry.eco.price(player, material)*totalAmount
-            }
-
-            VaultRegistry.economy.depositPlayer(player, price)
-        }
-
-        val placeholders = mutableMapOf<String, String>()
-        if(!UseAction.use(nbt, writer, 1, placeholders)) {
-            player.itemInHand = null
-            player.playSound(player.location, Sound.ITEM_BREAK, 1f, 1f)
-            return
-        }
-
-        StatisticsAction.apply(nbt, writer, placeholders) {
-            collected.mapKeys { it.key.name.lowercase() }
-        }
-        OwnerAction.generate(nbt, placeholders)
-
-        writer.apply(player.itemInHand)
-        ItemActionManager.updateItem(nbt, player.itemInHand, placeholders)
+        return collected
     }
 }

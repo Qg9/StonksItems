@@ -27,3 +27,24 @@ items:
         - "[sound] VILLAGER_YES"
         - "[player] upgrade_hoe hand %stats_wheat% %items_use%"
       CLICKS_PLACEHOLDERS: "stats_wheat$INT items_use$INT"
+  hammer:
+    material: DIAMOND_PICKAXE
+    name: "&bHAMMER"
+    lore:
+      - "&7Vous avez cassé : b%diamond_ore% diamants !"
+      - "&7Propriété de : &e%owner%"
+      - "&7Utilisations restantes : &c%use%"
+    enchantments:
+      DURABILITY: 1
+    flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_ENCHANTS
+    unbreakable: true
+    properties:
+      LORE_CHANGE:
+        - "&7Vous avez cassé : %diamond_ore% diamants !"
+      OWNER: "Votre nom ici"
+      STATISTICS:
+        - "diamond_ore"
+      HAMMER: 1 # 3x3
+      USE: 20

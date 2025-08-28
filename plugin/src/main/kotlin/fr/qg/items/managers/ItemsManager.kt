@@ -2,6 +2,7 @@ package fr.qg.items.managers
 
 import de.tr7zw.changeme.nbtapi.NBT
 import fr.qg.items.ItemsPlugin
+import fr.qg.items.action.HammerAction
 import fr.qg.items.action.HarvestAction
 import fr.qg.items.action.InfiniteAction
 import fr.qg.items.action.OtherStatisticsAction
@@ -33,7 +34,8 @@ object ItemsManager {
         ItemProperty.OWNER to listOf(OwnerAction),
         ItemProperty.STATISTICS to listOf(StatisticsAction, OtherStatisticsAction),
         ItemProperty.INFINITE to listOf(InfiniteAction),
-        ItemProperty.SHIFT_CLICK_ACTION to listOf(ShiftClickAction)
+        ItemProperty.SHIFT_CLICK_ACTION to listOf(ShiftClickAction),
+        ItemProperty.HAMMER to listOf(HammerAction)
     )
 
     fun load() {

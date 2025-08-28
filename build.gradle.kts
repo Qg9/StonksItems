@@ -45,3 +45,16 @@ project(":v8") {
         add("compileOnly", "com.github.MilkBowl:VaultAPI:1.7")
     }
 }
+
+project(":v21") {
+    plugins.apply("org.jetbrains.kotlin.jvm")
+    extensions.configure(org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension::class.java) {
+        jvmToolchain(21)
+    }
+    dependencies {
+        add("compileOnly", "io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
+        add("compileOnly", "de.tr7zw:item-nbt-api:2.15.1")
+        add("compileOnly", project(":common"))
+        add("compileOnly", "com.github.MilkBowl:VaultAPI:1.7")
+    }
+}

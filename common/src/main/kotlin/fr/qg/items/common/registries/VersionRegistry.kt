@@ -6,8 +6,8 @@ import org.bukkit.Bukkit
 object VersionRegistry {
 
     enum class PluginVersion(val versionPrefix: String, val implClass: String) {
-        V8("1.8", "fr.qg.items.v8.VersionImplementation8"),
-        V21("1.21", "fr.qg.items.v21.VersionImplementation21")
+        V8("1.8", "fr.qg.items.v8.VersionImpl8"),
+        V21("1.21", "fr.qg.items.v21.VersionImpl21")
     }
 
     lateinit var version: VersionImpl
@@ -17,7 +17,7 @@ object VersionRegistry {
 
     private fun resolveVersion(): PluginVersion {
         val v = serverBukkitVersion()
-        return PluginVersion.entries.firstOrNull { v.startsWith(it.versionPrefix) }
+        return PluginVersion.entries.firstOrNull { v.contains(it.versionPrefix) }
             ?: error("Unsupported Bukkit version: '$v'")
     }
 

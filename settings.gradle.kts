@@ -5,3 +5,4 @@ rootProject.name = "StonksItems2"
 include("common", "v8", "plugin")
 
 include("plugin")
+include("v21")
