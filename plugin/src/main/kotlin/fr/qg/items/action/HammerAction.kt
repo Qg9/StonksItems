@@ -20,9 +20,12 @@ object HammerAction : Listener, ItemPropertyAction {
     @EventHandler
     fun onBreak(event: BlockBreakEvent) {
 
-        val block = event.block
+        val block = event.block ?: return
         val player = event.player
         val item = VersionRegistry.version.itemInMainHand(player) ?: return
+
+        if (item.type == Material.AIR)return
+        if (block.type == Material.AIR) return
 
         NBT.get(item) {
             if (!ItemProperty.HAMMER.has(it)) return@get

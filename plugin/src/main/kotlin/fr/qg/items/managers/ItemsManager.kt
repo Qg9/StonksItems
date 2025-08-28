@@ -20,6 +20,7 @@ import fr.qg.items.common.managers.ItemActionManager
 import fr.qg.items.common.models.ConfigurationItem
 import fr.qg.items.common.registries.VersionRegistry
 import fr.qg.items.common.utils.linearise
+import org.bukkit.craftbukkit.libs.jline.console.KeyMap.meta
 import org.bukkit.inventory.ItemStack
 
 object ItemsManager {
@@ -62,6 +63,11 @@ object ItemsManager {
             item.properties.keys.mapNotNull { h -> actions[h] }.linearise().forEach { t ->
                 (t as? PlaceholdersItemPropertyAction)?.generate(it, placeholders)
             }
+
+            val meta = stack.itemMeta
+            NameChangeAction.applyToCurrentLore(meta, placeholders.entries)
+            LoreChangeAction.applyToCurrentLore(meta, placeholders.entries)
+            stack.itemMeta = meta
 
             ItemActionManager.updateItem(it, stack, placeholders)
         }

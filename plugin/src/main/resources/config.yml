@@ -1,17 +1,27 @@
+# configures items
 items:
+  # item's id
   farm_hoe:
+    # item's type, see Material enum of your server version
     material: DIAMOND_HOE
+    # item's name, useless if you have NAME_CHANGE property
     name: "&aHoue du fermier"
+    # item's lore, useless if you have LORE_CHANGE property
     lore:
       - "&7Une houe magique pour vos cultures"
       - "&eUtilisable en &6Harvest Mode"
       - "%carrot_item% %wheat% %owner%"
+    # item's enchantments, see Enchantment enum of your server version
     enchantments:
       DURABILITY: 1
+    # item's flag, keep it as it is
     flags:
       - HIDE_ATTRIBUTES
       - HIDE_ENCHANTS
+    # if the item is unbreakable on the vanilla kind of durability
     unbreakable: true
+    # item's property
+    # see : https://github.com/Qg9/StonksItems/blob/master/common/src/main/kotlin/fr/qg/items/common/ItemProperty.kt
     properties:
       HARVEST_RADIUS: 3
       HARVEST_FORTUNE: 2
